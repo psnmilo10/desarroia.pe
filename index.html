@@ -108,12 +108,15 @@ html { scroll-behavior: smooth; }
 
 
  .hero{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:70vh;     /* ajusta 60–80vh a gusto */
-    text-align:center;
-  }
+  display: flex;
+  flex-direction: column;   /* ⬅️ apila título y párrafo uno debajo del otro */
+  align-items: center;      /* centra horizontal */
+  justify-content: center;  /* centra vertical dentro del bloque */
+  min-height: 70vh;
+  text-align: center;
+  gap: 12px;                /* espacio entre h2 y p */
+}
+
 
   /* Que el ancla #portafolio quede bien al dar clic en la barra */
   #portafolio{
