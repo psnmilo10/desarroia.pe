@@ -122,6 +122,19 @@ html { scroll-behavior: smooth; }
   #portafolio{
     scroll-margin-top:100px; /* separa del header al hacer anchor */
   }
+
+    #automatizaciones{ scroll-margin-top:100px; }
+
+  /* Tarjetas de texto para Automatizaciones */
+  .card{
+    background:#0003;
+    border:1px solid #ffffff14;
+    border-radius:14px;
+    padding:16px;
+  }
+  .card h4{ margin:0 0 6px; }
+  .card p{ color:#c5c6c7; line-height:1.6; margin:0; }
+    
   </style>
   
 </head>
@@ -132,8 +145,10 @@ html { scroll-behavior: smooth; }
     <nav class="navbar">
       <div class="nav">
         <a href="#portafolio">Portafolio</a>
+        <a href="#automatizaciones">Automatizaciones</a>
       </div>
     </nav>
+
   </header>
 
   <main>
@@ -141,6 +156,25 @@ html { scroll-behavior: smooth; }
       <h2>Bienvenido a desarroIA.pe 🚀</h2>
       <p>Especialistas en soluciones basadas en inteligencia artificial y estrategias de marketing digital. Combinamos creatividad y tecnología para ayudar a las marcas a destacar en el entorno digital.</p>
     </div>
+
+    <section id="automatizaciones" class="section">
+  <h3>Automatizaciones</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>WhatsApp → Google Sheets</h4>
+      <p>Captura leads de WhatsApp y guarda automáticamente en tu hoja.</p>
+    </div>
+    <div class="card">
+      <h4>Formulario web → Email/Slack</h4>
+      <p>Notifica en tiempo real cuando llega un nuevo contacto.</p>
+    </div>
+    <div class="card">
+      <h4>Chat del sitio → n8n</h4>
+      <p>Orquestra respuestas, guarda conversaciones y dispara flujos.</p>
+    </div>
+  </div>
+</section>
+
     <!-- Portafolio -->
   <section id="portafolio" class="section">
     <h3>Portafolio</h3>
