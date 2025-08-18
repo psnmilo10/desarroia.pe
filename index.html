@@ -134,7 +134,35 @@ html { scroll-behavior: smooth; }
   }
   .card h4{ margin:0 0 6px; }
   .card p{ color:#c5c6c7; line-height:1.6; margin:0; }
-    
+
+
+    /* ===== Slider Automatizaciones ===== */
+.slider{position:relative;max-width:1100px;margin:0 auto;overflow:hidden}
+.slides{display:flex;transition:transform .5s ease}
+.slide{min-width:100%;display:grid;grid-template-columns:1.3fr 1fr;gap:16px;align-items:center;
+  background:#0003;border:1px solid #ffffff14;border-radius:16px;padding:16px}
+.slide img{width:100%;display:block;border-radius:12px}
+.slide .text h4{margin:0 0 8px}
+.slide .text p{color:#c5c6c7;line-height:1.6;margin:0}
+
+/* Flechas */
+.slider .nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  background:rgba(0,0,0,.45);border:1px solid #ffffff33;color:#fff;display:flex;align-items:center;
+  justify-content:center;cursor:pointer}
+.slider .prev{left:10px}
+.slider .next{right:10px}
+.slider .nav:hover{background:rgba(0,0,0,.6)}
+
+/* Puntos */
+.dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;justify-content:center}
+.dots button{width:8px;height:8px;border-radius:50%;border:none;background:#ffffff44;cursor:pointer}
+.dots button.active{background:#854fff}
+
+/* Responsive */
+@media (max-width: 900px){
+  .slide{grid-template-columns:1fr}
+}
+
   </style>
   
 </head>
@@ -157,23 +185,103 @@ html { scroll-behavior: smooth; }
       <p>Especialistas en soluciones basadas en inteligencia artificial y estrategias de marketing digital. Combinamos creatividad y tecnología para ayudar a las marcas a destacar en el entorno digital.</p>
     </div>
 
-    <section id="automatizaciones" class="section">
+   <section id="automatizaciones" class="section">
   <h3>Automatizaciones</h3>
-  <div class="grid">
-    <div class="card">
-      <h4>Automatizaciones de chats</h4>
-      <p>Captura leads, cierra ventas, agenda citas, entre otras funciones es lo que puedes hacer con un agente de IA. Tu elijes whatsapp, telegram o en tu propia pagina web.</p>
+
+  <div id="auto-slider" class="slider">
+    <div class="slides">
+      <!-- Slide 1 -->
+      <article class="slide">
+        <img src="https://raw.githubusercontent.com/psnmilo10/desarroia.pe/refs/heads/main/linkedin%20agro.jpg"
+             alt="Automatización con agente IA para agricultura">
+        <div class="text">
+          <h4>Automatizaciones de chats</h4>
+          <p>Captura leads, cierra ventas, agenda citas y atiende 24/7 con un agente de IA. Integra WhatsApp, Telegram o tu web.</p>
+        </div>
+      </article>
+
+      <!-- Slide 2 -->
+      <article class="slide">
+        <img src="https://raw.githubusercontent.com/psnmilo10/desarroia.pe/refs/heads/main/6115fdf5-3c61-4bfc-a072-5a28d66fc9f9.png"
+             alt="Automatización para empresas mineras">
+        <div class="text">
+          <h4>Gestión de inventarios</h4>
+          <p>Movimientos en tiempo real, alertas de stock y reportes automáticos conectados a tu planilla o ERP.</p>
+        </div>
+      </article>
+
+      <!-- Slide 3 (cámbialo por tu imagen) -->
+      <article class="slide">
+        <img src="https://via.placeholder.com/1200x800.jpg"
+             alt="Automatización de procesos internos">
+        <div class="text">
+          <h4>Mejora de eficiencia</h4>
+          <p>Recordatorios, reportes y sincronización con email/Slack para eliminar tareas repetitivas.</p>
+        </div>
+      </article>
     </div>
-    <div class="card">
-      <h4>Gestion de inventarios</h4>
-      <p>Notifica en tiempo real ingresos y egresos, evita quedarte sin stock, agiliza auditorias y mejora el rendimiento de tu empresa.</p>
-    </div>
-    <div class="card">
-      <h4>mejora de eficiencia</h4>
-      <p>recordatorios, reportes automáticos, integración con correo,reducción de tareas repetitivas.</p>
-    </div>
+
+    <!-- Flechas -->
+    <button class="nav prev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="nav next" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+    </button>
+
+    <!-- Puntos -->
+    <div class="dots" aria-label="Paginación"></div>
   </div>
 </section>
+<section id="automatizaciones" class="section">
+  <h3>Automatizaciones</h3>
+
+  <div id="auto-slider" class="slider">
+    <div class="slides">
+      <!-- Slide 1 -->
+      <article class="slide">
+        <img src="https://raw.githubusercontent.com/psnmilo10/desarroia.pe/refs/heads/main/Captura%20de%20Pantalla%202025-08-18%20a%20la(s)%2014.37.17.png"
+             alt="Automatización con agente IA para agricultura">
+        <div class="text">
+          <h4>Automatizaciones de chats</h4>
+          <p>Captura leads, cierra ventas, agenda citas y atiende 24/7 con un agente de IA. Integra WhatsApp, Telegram o tu web.</p>
+        </div>
+      </article>
+
+      <!-- Slide 2 -->
+      <article class="slide">
+        <img src="https://raw.githubusercontent.com/psnmilo10/desarroia.pe/refs/heads/main/Captura%20de%20Pantalla%202025-08-18%20a%20la(s)%2014.37.17.png"
+             alt="Automatización para empresas mineras">
+        <div class="text">
+          <h4>Gestión de inventarios</h4>
+          <p>Movimientos en tiempo real, alertas de stock y reportes automáticos conectados a tu planilla o ERP.</p>
+        </div>
+      </article>
+
+      <!-- Slide 3 (cámbialo por tu imagen) -->
+      <article class="slide">
+        <img src="https://raw.githubusercontent.com/psnmilo10/desarroia.pe/refs/heads/main/Captura%20de%20Pantalla%202025-08-18%20a%20la(s)%2014.37.17.png"
+             alt="Automatización de procesos internos">
+        <div class="text">
+          <h4>Mejora de eficiencia</h4>
+          <p>Recordatorios, reportes y sincronización con email/Slack para eliminar tareas repetitivas.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Flechas -->
+    <button class="nav prev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="nav next" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+    </button>
+
+    <!-- Puntos -->
+    <div class="dots" aria-label="Paginación"></div>
+  </div>
+</section>
+
 
     <!-- Portafolio -->
   <section id="portafolio" class="section">
@@ -260,7 +368,69 @@ html { scroll-behavior: smooth; }
 })();
 </script>
 
-  /* widget de chat */
+  <!-- JS del slider (carrusel de Automatizaciones) -->
+<script>
+(function(){
+  const slider = document.getElementById('auto-slider');
+  if(!slider) return; // si no existe, no hace nada
+
+  const track   = slider.querySelector('.slides');
+  const slides  = Array.from(track.children);
+  const prevBtn = slider.querySelector('.prev');
+  const nextBtn = slider.querySelector('.next');
+  const dotsBox = slider.querySelector('.dots');
+  let i = 0, timer;
+
+  // Crear puntos
+  slides.forEach((_, idx)=>{
+    const b = document.createElement('button');
+    b.addEventListener('click', ()=>go(idx));
+    dotsBox.appendChild(b);
+  });
+
+  function update(){
+    track.style.transform = `translateX(-${i*100}%)`;
+    dotsBox.querySelectorAll('button').forEach((d,idx)=>{
+      d.classList.toggle('active', idx===i);
+    });
+  }
+  function go(idx){
+    i = (idx + slides.length) % slides.length;
+    update();
+    restart();
+  }
+  function next(){ go(i+1); }
+  function prev(){ go(i-1); }
+
+  // Autoplay
+  function start(){ timer = setInterval(next, 5000); } // 5s
+  function stop(){ clearInterval(timer); }
+  function restart(){ stop(); start(); }
+
+  // Eventos
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+
+  // Swipe móvil
+  let x0=null;
+  slider.addEventListener('touchstart', e=>{ x0 = e.touches[0].clientX; stop(); }, {passive:true});
+  slider.addEventListener('touchend', e=>{
+    if(x0==null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 40) (dx<0 ? next() : prev());
+    x0=null; start();
+  });
+
+  // Iniciar
+  update();
+  start();
+})();
+</script>
+
+
+  <!-- widget de chat -->
    <script>
   window.ChatWidgetConfig = {
     webhook: {
