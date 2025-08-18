@@ -30,8 +30,8 @@
       justify-content: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 40px;
-      padding: 40px 24px;
+      gap: 72px;
+      padding: 48px 24px 80px; 
     }
     .content {
       max-width: 800px;
@@ -105,6 +105,19 @@
 /* Scroll suave al navegar por anclas */
 html { scroll-behavior: smooth; }
 
+
+ .hero{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:70vh;     /* ajusta 60–80vh a gusto */
+    text-align:center;
+  }
+
+  /* Que el ancla #portafolio quede bien al dar clic en la barra */
+  #portafolio{
+    scroll-margin-top:100px; /* separa del header al hacer anchor */
+  }
   </style>
   
 </head>
@@ -120,7 +133,7 @@ html { scroll-behavior: smooth; }
   </header>
 
   <main>
-    <div class="content">
+    <div class="content hero">
       <h2>Bienvenido a desarroIA.pe 🚀</h2>
       <p>Especialistas en soluciones basadas en inteligencia artificial y estrategias de marketing digital. Combinamos creatividad y tecnología para ayudar a las marcas a destacar en el entorno digital.</p>
     </div>
