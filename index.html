@@ -145,18 +145,40 @@ html { scroll-behavior: smooth; }
 .slide .text h4{margin:0 0 8px}
 .slide .text p{color:#c5c6c7;line-height:1.6;margin:0}
 
-/* Flechas */
-.slider .nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  background:rgba(0,0,0,.45);border:1px solid #ffffff33;color:#fff;display:flex;align-items:center;
-  justify-content:center;cursor:pointer}
-.slider .prev{left:10px}
-.slider .next{right:10px}
-.slider .nav:hover{background:rgba(0,0,0,.6)}
+/* Sin flechas (ocultas) */
+.slider .nav{ display:none !important; }
 
-/* Puntos */
-.dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;justify-content:center}
-.dots button{width:8px;height:8px;border-radius:50%;border:none;background:#ffffff44;cursor:pointer}
-.dots button.active{background:#854fff}
+/* Puntos más visibles y centrados */
+.dots{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.dots button{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #00000055;
+  background: #ffffff66;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  opacity: .9;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, opacity .15s ease;
+}
+.dots button:hover{ opacity: 1; transform: scale(1.1); }
+.dots button.active{
+  background: #854fff;
+  border-color: #854fff;
+  opacity: 1;
+}
+.dots button:focus-visible{ outline: 2px solid #fff; outline-offset: 2px; }
+
 
 /* Responsive */
 @media (max-width: 900px){
