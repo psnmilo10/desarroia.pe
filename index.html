@@ -299,6 +299,62 @@ html { scroll-behavior: smooth; }
 
 
 
+/* ancla cómoda al hacer clic en navbar sticky */
+#contacto{ scroll-margin-top: 100px; }
+
+/* Tarjeta y grid del formulario */
+.contact-card{
+  background: rgba(255,255,255,.06);
+  border: 1px solid #ffffff1a;
+  border-radius: 16px;
+  padding: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.field-full{ grid-column: 1 / -1; }
+
+.field label{
+  display:block; font-weight: 600; margin-bottom: 6px;
+}
+.field input, .field textarea{
+  width:100%; padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid #ffffff1a;
+  background: rgba(0,0,0,.25);
+  color:#fff; outline: none;
+}
+.field input:focus, .field textarea:focus{
+  border-color:#854fff80; box-shadow: 0 0 0 3px rgba(133,79,255,.18);
+}
+
+.field .err{ color:#ff9c9c; font-size:.85rem; min-height: 0.9rem; display:block; }
+
+.field.checks label{
+  display:flex; gap:10px; align-items:flex-start;
+  font-weight: 500; color: #c5c6c7;
+}
+.field.checks input[type="checkbox"]{ transform: translateY(3px); }
+
+/* honeypot oculto */
+.hp{ position:absolute !important; left:-99999px; opacity:0; height:0; width:0; }
+
+/* acciones */
+.actions{
+  display:flex; gap:12px; align-items:center; margin-top: 10px;
+}
+.form-msg{ font-size:.95rem; opacity:.9; }
+
+/* Responsive */
+@media (max-width: 900px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
 
 
   </style>
@@ -312,6 +368,7 @@ html { scroll-behavior: smooth; }
       <div class="nav">
         <a href="#portafolio">Portafolio</a>
         <a href="#automatizaciones">Automatizaciones</a>
+        <a href="#contacto">Contacto</a>
       </div>
     </nav>
   </div>
@@ -421,6 +478,57 @@ html { scroll-behavior: smooth; }
       </a>
     </div>
   </section>
+
+    <!-- ================= Contacto ================= -->
+<section id="contacto" class="section">
+  <h3>Hablemos</h3>
+
+  <div class="contact-card">
+    <form id="contactForm" novalidate>
+      <!-- Honeypot anti-spam (oculto) -->
+      <input type="text" name="website" id="hp_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+
+      <div class="contact-grid">
+        <div class="field">
+          <label for="nombre">Nombre *</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre">
+          <small class="err"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required placeholder="tucorreo@dominio.com">
+          <small class="err"></small>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono (opcional)</label>
+          <input id="telefono" name="telefono" type="tel" placeholder="+51 999 999 999">
+        </div>
+
+        <div class="field field-full">
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos brevemente qué necesitas..."></textarea>
+          <small class="err"></small>
+        </div>
+
+        <div class="field field-full checks">
+          <label>
+            <input type="checkbox" id="consent" required>
+            Acepto ser contactad@ para responder a mi consulta.
+          </label>
+          <small class="err"></small>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btnSend" type="submit" class="btn btn-primary">Enviar</button>
+        <span id="formMsg" class="form-msg" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
 </main>
 
 
@@ -573,6 +681,66 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 </script>
 
+<script>
+(() => {
+  // 1) Pega aquí tu webhook de n8n (producción)
+  const N8N_WEBHOOK = 'https://n8n.srv865409.hstgr.cloud/webhook/c26187bd-7784-4c7c-a5d4-313153f7f604'; // <-- CAMBIA ESTO
+
+  const form   = document.getElementById('contactForm');
+  const btn    = document.getElementById('btnSend');
+  const msgBox = document.getElementById('formMsg');
+
+  // helpers
+  const setError = (el, text='') => { const s = el?.closest('.field')?.querySelector('.err'); if(s){ s.textContent = text; } };
+  const clearErrors = () => form.querySelectorAll('.err').forEach(e => e.textContent = '');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors(); msgBox.textContent = '';
+
+    // honeypot: si está relleno, no enviamos
+    if (form.website && form.website.value.trim() !== '') {
+      msgBox.textContent = 'Gracias, enviado.'; return;
+    }
+
+    // validación mínima
+    const nombre  = form.nombre.value.trim();
+    const email   = form.email.value.trim();
+    const mensaje = form.mensaje.value.trim();
+    const consent = document.getElementById('consent').checked;
+
+    let ok = true;
+    if (!nombre){ setError(form.nombre, 'Escribe tu nombre.'); ok=false; }
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)){ setError(form.email, 'Ingresa un email válido.'); ok=false; }
+    if (!mensaje){ setError(form.mensaje, 'Cuéntanos brevemente.'); ok=false; }
+    if (!consent){ setError(document.getElementById('consent'), 'Requerido.'); ok=false; }
+
+    if (!ok) return;
+
+    // armamos FormData para evitar preflight CORS
+    const data = new FormData(form);
+    data.append('origen', 'web_desarroIA');
+    data.append('timestamp', new Date().toISOString());
+
+    btn.disabled = true; btn.textContent = 'Enviando…';
+
+    try{
+      const res = await fetch(N8N_WEBHOOK, { method:'POST', body: data });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      // si tu Response node devuelve JSON, puedes leerlo:
+      // const out = await res.json();
+
+      msgBox.textContent = '¡Gracias! Te contactaremos pronto.';
+      form.reset();
+    }catch(err){
+      console.error(err);
+      msgBox.textContent = 'Hubo un problema al enviar. Inténtalo en unos minutos.';
+    }finally{
+      btn.disabled = false; btn.textContent = 'Enviar';
+    }
+  });
+})();
+</script>
 
   <!-- widget de chat -->
    <script>
