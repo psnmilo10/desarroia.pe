@@ -360,14 +360,14 @@ html { scroll-behavior: smooth; }
 .field-full.checks label{
   display:inline-flex;     /* aseguramos fila */
   align-items:center;
-  gap: 3px;                /* ↓ ajusta 4 → 2 si lo quieres “súper pegado” */
+  gap: -2px;                /* ↓ ajusta 4 → 2 si lo quieres “súper pegado” */
   width:auto;
   margin:0;
 }
 
 .field-full.checks input[type="checkbox"]{
   margin: 0;               /* quita márgenes por defecto del navegador */
-  transform: translateY(1px); /* opcional: alinea con la primera línea */
+  transform: translateY(-2px); /* opcional: alinea con la primera línea */
   /* Si lo quieres más cerca todavía, usa una leve
      superposición (déjalo en -2px o -3px): */
   margin-right: -2px;
