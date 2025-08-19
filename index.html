@@ -285,12 +285,58 @@ html { scroll-behavior: smooth; }
 /* Asegura que paddings no desborden nada */
 *,*::before,*::after{ box-sizing: border-box; }
 
+/* uso de logo rediseño */
+    /* Oculta solo para lector de pantalla (si usas el h1 de SEO) */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Mantiene el nav centrado y deja espacio a la izquierda para el logo */
+.header-inner{ position:relative; padding-left: 150px; }  /* ajusta 120–180px según el ancho de tu logo */
+
+/* Chip glass del logo en esquina izquierda */
+.brand{
+  position:absolute; left:16px; top:8px;
+  display:flex; align-items:center; gap:10px;
+  height:44px; padding:6px 10px; border-radius:12px;
+  text-decoration:none;
+}
+.brand img{ height:28px; width:auto; display:block; }
+
+/* Pastilla tipo glass para que el logo destaque */
+.brand--chip{
+  background: rgba(255,255,255,.06);
+  border: 1px solid #ffffff1a;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* Si tu PNG tiene letras negras/azules, inviértelas a claro para el fondo oscuro */
+.brand--invert img{
+  filter: invert(1) saturate(0) brightness(1.9) contrast(1.05)
+          drop-shadow(0 2px 10px rgba(133,79,255,.35));
+  /* Comentario: convierte lo oscuro en claro y añade halo */
+}
+
+/* Alternativa: mantener color pero realzar (quita brand--invert y usa brand--tint) */
+.brand--tint img{
+  filter: brightness(1.2) saturate(1.3) drop-shadow(0 2px 10px rgba(133,79,255,.35));
+}
+
+@media (max-width: 900px){
+  .header-inner{ padding-left: 120px; }
+  .brand img{ height:24px; }
+}
+
   </style>
   
 </head>
 <body>
   <header>
-    <h1>desarroIA.pe</h1>
+   
+    <!-- Logo (arriba a la izquierda) -->
+<a class="brand brand--chip brand--invert" href="/">
+  <img src="https://TU-RUTA/tu-logo.png" alt="desarroIA.pe">
+</a>
 
     <nav class="navbar">
       <div class="nav">
