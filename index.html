@@ -356,39 +356,28 @@ html { scroll-behavior: smooth; }
   .contact-grid{ grid-template-columns: 1fr; }
 }
 
-/* ===== Consentimiento: checkbox pegado al texto ===== */
-.field-full.checks{
-  display: flex;            /* coloca checkbox + texto en la misma fila */
-  align-items: center;
-  gap: 10px;                /* espacio real entre el cuadradito y el texto */
-}
-
+/* Pegamos aún más el checkbox al texto del consentimiento */
 .field-full.checks label{
-  display: inline-flex;     /* el label solo ocupa lo que mide su contenido */
-  align-items: center;
-  gap: 8px;                 /* separa checkbox y texto */
-  margin: 0;                /* quita márgenes extra */
-  width: auto;              /* evita que se estire a todo el ancho */
-  justify-content: flex-start;
+  display:inline-flex;     /* aseguramos fila */
+  align-items:center;
+  gap: 3px;                /* ↓ ajusta 4 → 2 si lo quieres “súper pegado” */
+  width:auto;
+  margin:0;
 }
 
 .field-full.checks input[type="checkbox"]{
-  margin: 0;                /* sin márgenes laterales que lo alejen */
-  transform: translateY(2px);  /* opcional: lo baja un pelín para alinear */
+  margin: 0;               /* quita márgenes por defecto del navegador */
+  transform: translateY(1px); /* opcional: alinea con la primera línea */
+  /* Si lo quieres más cerca todavía, usa una leve
+     superposición (déjalo en -2px o -3px): */
+  margin-right: -2px;
 }
 
-/* Si aparece demasiado espaciado debajo del consentimiento, puedes reducir: */
-.field-full.checks + .actions{
-  margin-top: 10px;         /* ajusta si lo necesitas */
+/* Si ves que hay espacio “raro” entre el checkbox y el texto en móviles */
+@media (max-width:600px){
+  .field-full.checks label{ gap: 3px; }
 }
 
-/* En móviles se apila de forma agradable */
-@media (max-width: 600px){
-  .field-full.checks{
-    flex-wrap: wrap;
-    gap: 8px 10px;
-  }
-}
 
 
   </style>
