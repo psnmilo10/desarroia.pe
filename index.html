@@ -357,6 +357,18 @@ html { scroll-behavior: smooth; }
 }
 
 
+    /* Reduce el espacio y alinea el botón a la derecha, cerca del texto */
+.field-full.checks{ margin-bottom: 6px; }   /* acorta el hueco debajo del consentimiento */
+.actions{
+  justify-content: flex-end;  /* mueve el botón a la derecha */
+  margin-top: 6px;            /* menos separación */
+}
+
+/* En móviles, si prefieres centrarlo */
+@media (max-width: 600px){
+  .actions{ justify-content: center; }
+}
+
   </style>
   
 </head>
